@@ -66,32 +66,34 @@ const UserProfile = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <div className="flex items-center space-x-4 mb-6">
-          <Avatar
-            src={user?.avatar}
-            alt={user?.username}
-            size="xl"
-          />
-          
-          <div className="flex-1">
-            <h1 className="text-xl font-bold text-gray-800 mb-1">
-              {user?.username}
-            </h1>
-            <p className="text-gray-600 mb-3">{user?.displayName}</p>
+<div className="flex items-start justify-between mb-6">
+          <div className="flex items-center space-x-4">
+            <Avatar
+              src={user?.avatar}
+              alt={user?.username}
+              size="xl"
+            />
             
-            <div className="flex items-center space-x-6 text-sm">
-              <div className="text-center">
-                <div className="font-bold text-lg">{posts.length}</div>
-                <div className="text-gray-500">posts</div>
-              </div>
-              <div className="text-center">
-                <div className="font-bold text-lg">{user?.followersCount || 0}</div>
-                <div className="text-gray-500">followers</div>
-              </div>
-              <div className="text-center">
-                <div className="font-bold text-lg">{user?.followingCount || 0}</div>
-                <div className="text-gray-500">following</div>
-              </div>
+            <div className="flex-1">
+              <h1 className="text-xl font-bold text-gray-800 mb-1">
+                {user?.username}
+              </h1>
+              <p className="text-gray-600">{user?.displayName}</p>
+            </div>
+          </div>
+          
+          <div className="flex items-center space-x-6 text-sm">
+            <div className="text-center">
+              <div className="font-bold text-lg">{posts.length}</div>
+              <div className="text-gray-500">posts</div>
+            </div>
+            <div className="text-center">
+              <div className="font-bold text-lg">{user?.followersCount || 0}</div>
+              <div className="text-gray-500">followers</div>
+            </div>
+            <div className="text-center">
+              <div className="font-bold text-lg">{user?.followingCount || 0}</div>
+              <div className="text-gray-500">following</div>
             </div>
           </div>
         </div>
