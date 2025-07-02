@@ -8,6 +8,7 @@ import Loading from '@/components/ui/Loading'
 import Error from '@/components/ui/Error'
 import Empty from '@/components/ui/Empty'
 import ApperIcon from '@/components/ApperIcon'
+import NotificationItem from '@/components/molecules/NotificationItem'
 
 const Activity = () => {
   const [activities, setActivities] = useState([])
@@ -102,57 +103,15 @@ const Activity = () => {
           message="When someone likes, comments, or follows you, you'll see it here."
         />
       ) : (
-        <div className="space-y-3">
+<div className="space-y-3">
           {filteredActivities.map((activity, index) => (
-            <motion.div
+            <NotificationItem
               key={activity.Id}
-              className="flex items-center space-x-3 p-4 bg-surface rounded-xl"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <div className="relative">
-                <Avatar
-                  src={activity.user?.avatar}
-                  alt={activity.user?.username}
-                  size="md"
-                />
-                <div className={`absolute -bottom-1 -right-1 w-6 h-6 rounded-full flex items-center justify-center ${
-                  activity.type === 'like' ? 'bg-red-500' :
-                  activity.type === 'comment' ? 'bg-blue-500' :
-                  activity.type === 'follow' ? 'bg-green-500' :
-                  'bg-purple-500'
-                }`}>
-                  <ApperIcon
-                    name={getActivityIcon(activity.type)}
-                    className="w-3 h-3 text-white"
-                  />
-                </div>
-              </div>
-
-              <div className="flex-1">
-                <p className="text-sm text-gray-800 leading-relaxed">
-                  {getActivityText(activity)}
-                </p>
-                <p className="text-xs text-gray-500 mt-1">
-                  {formatDistanceToNow(new Date(activity.createdAt))} ago
-                </p>
-              </div>
-
-              {activity.type === 'follow' && (
-                <Button variant="primary" size="sm">
-                  Follow Back
-                </Button>
-              )}
-
-              {activity.postImage && (
-                <img
-                  src={activity.postImage}
-                  alt="Post"
-                  className="w-12 h-12 object-cover rounded-lg"
-                />
-              )}
-            </motion.div>
+              activity={activity}
+              index={index}
+              showFollowButton={true}
+              showPostImage={true}
+            />
           ))}
         </div>
       )}

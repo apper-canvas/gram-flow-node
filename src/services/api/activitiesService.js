@@ -44,8 +44,31 @@ const activitiesService = {
     if (index === -1) {
       throw new Error('Activity not found')
     }
-    const deleted = mockActivities.splice(index, 1)[0]
+const deleted = mockActivities.splice(index, 1)[0]
     return { ...deleted }
+  },
+
+  async markAsRead(id) {
+    await delay(200)
+    const index = mockActivities.findIndex(a => a.Id === id)
+    if (index === -1) {
+      throw new Error('Activity not found')
+    }
+    mockActivities[index] = { ...mockActivities[index], read: true }
+    return { ...mockActivities[index] }
+  },
+
+  async getUnreadCount() {
+    await delay(100)
+    return mockActivities.filter(a => !a.read).length
+  },
+
+  async markAllAsRead() {
+    await delay(300)
+    mockActivities.forEach(activity => {
+      activity.read = true
+    })
+    return { success: true }
   }
 }
 

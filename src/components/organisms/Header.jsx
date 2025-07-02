@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import ApperIcon from '@/components/ApperIcon'
 import { motion } from 'framer-motion'
-
+import NotificationDropdown from '@/components/molecules/NotificationDropdown'
 const Header = () => {
   const location = useLocation()
   const navigate = useNavigate()
@@ -45,7 +45,7 @@ const Header = () => {
           </h1>
         </div>
 
-        <div className="flex items-center space-x-2">
+<div className="flex items-center space-x-2">
           {location.pathname === '/' && (
             <>
               <button
@@ -56,9 +56,7 @@ const Header = () => {
                 <div className="absolute -top-1 -right-1 w-3 h-3 bg-primary rounded-full"></div>
               </button>
               
-              <button className="p-2 hover:bg-gray-100 rounded-full transition-colors">
-                <ApperIcon name="Heart" className="w-6 h-6 text-gray-700" />
-              </button>
+              <NotificationDropdown />
             </>
           )}
           
