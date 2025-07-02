@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import StoryItem from '@/components/molecules/StoryItem'
+import StoryViewer from '@/components/organisms/StoryViewer'
 import storiesService from '@/services/api/storiesService'
 import Loading from '@/components/ui/Loading'
 import Error from '@/components/ui/Error'
@@ -9,6 +10,8 @@ const StoriesBar = () => {
   const [stories, setStories] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+  const [viewerOpen, setViewerOpen] = useState(false)
+  const [currentStoryIndex, setCurrentStoryIndex] = useState(0)
 
   const loadStories = async () => {
     try {
@@ -27,9 +30,26 @@ const StoriesBar = () => {
     loadStories()
   }, [])
 
-  const handleStoryClick = (story) => {
-    // Handle story view logic
-    console.log('View story:', story)
+const handleStoryClick = (story) => {
+    const storyIndex = stories.findIndex(s => s.Id === story.Id)
+    setCurrentStoryIndex(storyIndex)
+    setViewerOpen(true)
+  }
+
+  const handleStoryComplete = async (storyId) => {
+    try {
+      await storiesService.markAsViewed(storyId)
+      setStories(prev => prev.map(s => 
+        s.Id === storyId ? { ...s, viewed: true } : s
+      ))
+    } catch (err) {
+      console.error('Failed to mark story as viewed:', err)
+    }
+  }
+
+  const handleViewerClose = () => {
+    setViewerOpen(false)
+    setCurrentStoryIndex(0)
   }
 
   if (loading) {
@@ -68,9 +88,19 @@ const StoriesBar = () => {
             className="flex-shrink-0"
           >
             <StoryItem story={story} onClick={handleStoryClick} />
-          </motion.div>
+</motion.div>
         ))}
       </div>
+      
+      {viewerOpen && (
+        <StoryViewer
+          stories={stories}
+          currentIndex={currentStoryIndex}
+          onClose={handleViewerClose}
+          onStoryComplete={handleStoryComplete}
+          onIndexChange={setCurrentStoryIndex}
+        />
+      )}
     </motion.div>
   )
 }

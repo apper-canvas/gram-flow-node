@@ -45,8 +45,18 @@ const storiesService = {
     if (index === -1) {
       throw new Error('Story not found')
     }
-    const deleted = mockStories.splice(index, 1)[0]
+const deleted = mockStories.splice(index, 1)[0]
     return { ...deleted }
+  },
+
+  async markAsViewed(id) {
+    await delay(200)
+    const index = mockStories.findIndex(s => s.Id === id)
+    if (index === -1) {
+      throw new Error('Story not found')
+    }
+    mockStories[index] = { ...mockStories[index], viewed: true }
+    return { ...mockStories[index] }
   }
 }
 
