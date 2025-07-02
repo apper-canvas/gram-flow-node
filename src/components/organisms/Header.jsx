@@ -1,11 +1,27 @@
 import { useLocation, useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 import ApperIcon from '@/components/ApperIcon'
+import Avatar from '@/components/atoms/Avatar'
 import { motion } from 'framer-motion'
 import NotificationDropdown from '@/components/molecules/NotificationDropdown'
+import usersService from '@/services/api/usersService'
 const Header = () => {
   const location = useLocation()
   const navigate = useNavigate()
+  const [currentUser, setCurrentUser] = useState(null)
 
+  useEffect(() => {
+    const loadCurrentUser = async () => {
+      try {
+        const user = await usersService.getById(1) // Current user
+        setCurrentUser(user)
+      } catch (error) {
+        console.error('Failed to load current user:', error)
+      }
+    }
+    
+    loadCurrentUser()
+  }, [])
   const getTitle = () => {
     switch (location.pathname) {
       case '/': return 'Gram Flow'
@@ -65,6 +81,18 @@ const Header = () => {
               <ApperIcon name="ScanLine" className="w-6 h-6 text-gray-700" />
             </button>
           )}
+          
+          {/* User Profile Avatar */}
+          <button
+            onClick={() => navigate('/profile')}
+            className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+          >
+            <Avatar
+              src={currentUser?.avatar}
+              alt={currentUser?.username || 'Profile'}
+              size="sm"
+            />
+          </button>
         </div>
       </div>
     </motion.header>
