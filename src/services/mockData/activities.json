@@ -1,0 +1,110 @@
+[
+  {
+    "Id": 1,
+    "type": "like",
+    "userId": 2,
+    "user": {
+      "Id": 2,
+      "username": "alex_photographer",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alex"
+    },
+    "postId": 1,
+    "postImage": "https://picsum.photos/100/100?random=1",
+    "content": "liked your photo",
+    "createdAt": "2024-01-15T16:30:00Z"
+  },
+  {
+    "Id": 2,
+    "type": "comment",
+    "userId": 3,
+    "user": {
+      "Id": 3,
+      "username": "sarah_wanderlust",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=sarah"
+    },
+    "postId": 2,
+    "postImage": "https://picsum.photos/100/100?random=2",
+    "content": "Amazing shot! Love the composition 📸",
+    "createdAt": "2024-01-15T15:45:00Z"
+  },
+  {
+    "Id": 3,
+    "type": "follow",
+    "userId": 4,
+    "user": {
+      "Id": 4,
+      "username": "mike_adventures",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=mike"
+    },
+    "content": "started following you",
+    "createdAt": "2024-01-15T14:20:00Z"
+  },
+  {
+    "Id": 4,
+    "type": "like",
+    "userId": 5,
+    "user": {
+      "Id": 5,
+      "username": "emma_creative",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=emma"
+    },
+    "postId": 3,
+    "postImage": "https://picsum.photos/100/100?random=3",
+    "content": "liked your photo",
+    "createdAt": "2024-01-15T13:15:00Z"
+  },
+  {
+    "Id": 5,
+    "type": "comment",
+    "userId": 6,
+    "user": {
+      "Id": 6,
+      "username": "david_fitness",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=david"
+    },
+    "postId": 1,
+    "postImage": "https://picsum.photos/100/100?random=1",
+    "content": "This is incredible! Keep up the great work 💪",
+    "createdAt": "2024-01-15T12:30:00Z"
+  },
+  {
+    "Id": 6,
+    "type": "like",
+    "userId": 7,
+    "user": {
+      "Id": 7,
+      "username": "lisa_foodie",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=lisa"
+    },
+    "postId": 4,
+    "postImage": "https://picsum.photos/100/100?random=4",
+    "content": "liked your photo",
+    "createdAt": "2024-01-15T11:45:00Z"
+  },
+  {
+    "Id": 7,
+    "type": "mention",
+    "userId": 8,
+    "user": {
+      "Id": 8,
+      "username": "james_tech",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=james"
+    },
+    "postId": 2,
+    "postImage": "https://picsum.photos/100/100?random=2",
+    "content": "mentioned you in a comment",
+    "createdAt": "2024-01-15T10:20:00Z"
+  },
+  {
+    "Id": 8,
+    "type": "follow",
+    "userId": 3,
+    "user": {
+      "Id": 3,
+      "username": "sarah_wanderlust",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=sarah"
+    },
+    "content": "started following you",
+    "createdAt": "2024-01-15T09:30:00Z"
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "Id": 1,
+    "userId": 2,
+    "user": {
+      "Id": 2,
+      "username": "alex_photographer",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alex"
+    },
+    "image": "https://picsum.photos/400/700?random=101",
+    "viewed": false,
+    "createdAt": "2024-01-15T14:30:00Z"
+  },
+  {
+    "Id": 2,
+    "userId": 3,
+    "user": {
+      "Id": 3,
+      "username": "sarah_wanderlust",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=sarah"
+    },
+    "image": "https://picsum.photos/400/700?random=102",
+    "viewed": true,
+    "createdAt": "2024-01-15T12:15:00Z"
+  },
+  {
+    "Id": 3,
+    "userId": 4,
+    "user": {
+      "Id": 4,
+      "username": "mike_adventures",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=mike"
+    },
+    "image": "https://picsum.photos/400/700?random=103",
+    "viewed": false,
+    "createdAt": "2024-01-15T10:45:00Z"
+  },
+  {
+    "Id": 4,
+    "userId": 5,
+    "user": {
+      "Id": 5,
+      "username": "emma_creative",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=emma"
+    },
+    "image": "https://picsum.photos/400/700?random=104",
+    "viewed": false,
+    "createdAt": "2024-01-15T09:20:00Z"
+  },
+  {
+    "Id": 5,
+    "userId": 6,
+    "user": {
+      "Id": 6,
+      "username": "david_fitness",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=david"
+    },
+    "image": "https://picsum.photos/400/700?random=105",
+    "viewed": true,
+    "createdAt": "2024-01-15T08:00:00Z"
+  },
+  {
+    "Id": 6,
+    "userId": 7,
+    "user": {
+      "Id": 7,
+      "username": "lisa_foodie",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=lisa"
+    },
+    "image": "https://picsum.photos/400/700?random=106",
+    "viewed": false,
+    "createdAt": "2024-01-15T16:30:00Z"
+  }
+]

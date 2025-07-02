@@ -1,0 +1,90 @@
+[
+  {
+    "Id": 1,
+    "username": "you",
+    "displayName": "Your Account",
+    "bio": "Living life one photo at a time ✨ | Digital creator | Coffee enthusiast ☕️",
+    "avatar": null,
+    "followersCount": 1247,
+    "followingCount": 856,
+    "postsCount": 42,
+    "isPrivate": false
+  },
+  {
+    "Id": 2,
+    "username": "alex_photographer",
+    "displayName": "Alex Chen",
+    "bio": "📸 Professional photographer | Capturing moments that matter | Available for bookings 📧",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alex",
+    "followersCount": 15420,
+    "followingCount": 987,
+    "postsCount": 234,
+    "isPrivate": false
+  },
+  {
+    "Id": 3,
+    "username": "sarah_wanderlust",
+    "displayName": "Sarah Mitchell",
+    "bio": "✈️ Travel blogger | 🌍 Exploring the world one city at a time | Next stop: Tokyo 🇯🇵",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=sarah",
+    "followersCount": 8932,
+    "followingCount": 1456,
+    "postsCount": 187,
+    "isPrivate": false
+  },
+  {
+    "Id": 4,
+    "username": "mike_adventures",
+    "displayName": "Mike Rodriguez",
+    "bio": "🏔️ Adventure seeker | Rock climbing enthusiast | National parks explorer | Living life to the fullest",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=mike",
+    "followersCount": 6754,
+    "followingCount": 892,
+    "postsCount": 156,
+    "isPrivate": false
+  },
+  {
+    "Id": 5,
+    "username": "emma_creative",
+    "displayName": "Emma Johnson",
+    "bio": "🎨 Visual artist | Mixed media creator | Gallery exhibitions worldwide | Art is life ❤️",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=emma",
+    "followersCount": 12834,
+    "followingCount": 743,
+    "postsCount": 298,
+    "isPrivate": false
+  },
+  {
+    "Id": 6,
+    "username": "david_fitness",
+    "displayName": "David Park",
+    "bio": "💪 Personal trainer | Marathon runner | Helping you achieve your fitness goals | DM for coaching",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=david",
+    "followersCount": 9876,
+    "followingCount": 654,
+    "postsCount": 312,
+    "isPrivate": false
+  },
+  {
+    "Id": 7,
+    "username": "lisa_foodie",
+    "displayName": "Lisa Thompson",
+    "bio": "👩‍🍳 Food enthusiast | Recipe developer | Cookbook author | Sharing delicious moments daily",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=lisa",
+    "followersCount": 18567,
+    "followingCount": 1234,
+    "postsCount": 456,
+    "isPrivate": false
+  },
+  {
+    "Id": 8,
+    "username": "james_tech",
+    "displayName": "James Wilson",
+    "bio": "💻 Software engineer | Tech reviewer | Gadget geek | Building the future one line of code at a time",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=james",
+    "followersCount": 5432,
+    "followingCount": 789,
+    "postsCount": 123,
+    "isPrivate": false
+  }
+]

@@ -1,0 +1,151 @@
+[
+  {
+    "Id": 1,
+    "userId": 2,
+    "user": {
+      "Id": 2,
+      "username": "alex_photographer",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alex"
+    },
+    "images": ["https://picsum.photos/600/600?random=1"],
+    "caption": "Golden hour magic ✨ There's something absolutely enchanting about the way light dances during this time of day. Every shadow tells a story, every ray of sunshine creates poetry.",
+    "location": "Central Park, NYC",
+    "likes": [1, 3, 4, 5, 6],
+    "comments": [
+      {
+        "Id": 1,
+        "userId": 3,
+        "user": { "Id": 3, "username": "sarah_wanderlust", "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=sarah" },
+        "text": "This is absolutely stunning! The lighting is perfect 😍",
+        "likes": [1, 2],
+        "createdAt": "2024-01-15T10:30:00Z"
+      },
+      {
+        "Id": 2,
+        "userId": 4,
+        "user": { "Id": 4, "username": "mike_adventures", "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=mike" },
+        "text": "Amazing shot! What camera did you use?",
+        "likes": [1],
+        "createdAt": "2024-01-15T11:15:00Z"
+      }
+    ],
+    "tags": ["photography", "goldenhour", "nature"],
+    "createdAt": "2024-01-15T09:00:00Z"
+  },
+  {
+    "Id": 2,
+    "userId": 3,
+    "user": {
+      "Id": 3,
+      "username": "sarah_wanderlust",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=sarah"
+    },
+    "images": ["https://picsum.photos/600/600?random=2"],
+    "caption": "Coffee and contemplation ☕️ Starting my morning with gratitude and this incredible view. Sometimes the simplest moments hold the most beauty.",
+    "location": "Brooklyn Heights",
+    "likes": [1, 2, 4, 7],
+    "comments": [
+      {
+        "Id": 3,
+        "userId": 2,
+        "user": { "Id": 2, "username": "alex_photographer", "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alex" },
+        "text": "Love this vibe! Perfect morning inspiration 🌅",
+        "likes": [3],
+        "createdAt": "2024-01-14T08:45:00Z"
+      }
+    ],
+    "tags": ["coffee", "morning", "reflection"],
+    "createdAt": "2024-01-14T08:00:00Z"
+  },
+  {
+    "Id": 3,
+    "userId": 4,
+    "user": {
+      "Id": 4,
+      "username": "mike_adventures",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=mike"
+    },
+    "images": ["https://picsum.photos/600/600?random=3"],
+    "caption": "Weekend hiking adventures! 🥾 Nothing beats the feeling of fresh mountain air and endless trails. Every step is a new discovery, every peak a new perspective.",
+    "location": "Blue Ridge Mountains",
+    "likes": [1, 2, 3, 5, 8],
+    "comments": [
+      {
+        "Id": 4,
+        "userId": 5,
+        "user": { "Id": 5, "username": "emma_creative", "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=emma" },
+        "text": "This looks incredible! Adding it to my hiking bucket list 🏔️",
+        "likes": [4],
+        "createdAt": "2024-01-13T16:20:00Z"
+      }
+    ],
+    "tags": ["hiking", "mountains", "adventure"],
+    "createdAt": "2024-01-13T15:30:00Z"
+  },
+  {
+    "Id": 4,
+    "userId": 5,
+    "user": {
+      "Id": 5,
+      "username": "emma_creative",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=emma"
+    },
+    "images": ["https://picsum.photos/600/600?random=4"],
+    "caption": "Art in progress 🎨 Every blank canvas holds infinite possibilities. Today I'm exploring colors that speak to my soul and shapes that dance in my imagination.",
+    "location": "Art Studio, Manhattan",
+    "likes": [1, 2, 3, 4, 6],
+    "comments": [],
+    "tags": ["art", "painting", "creativity"],
+    "createdAt": "2024-01-12T14:00:00Z"
+  },
+  {
+    "Id": 5,
+    "userId": 6,
+    "user": {
+      "Id": 6,
+      "username": "david_fitness",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=david"
+    },
+    "images": ["https://picsum.photos/600/600?random=5"],
+    "caption": "Morning workout complete! 💪 Started the day with a 5-mile run and some strength training. The endorphins are flowing and I'm ready to conquer anything today brings.",
+    "location": "Riverside Park",
+    "likes": [2, 3, 4, 7],
+    "comments": [
+      {
+        "Id": 5,
+        "userId": 3,
+        "user": { "Id": 3, "username": "sarah_wanderlust", "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=sarah" },
+        "text": "You're so inspiring! Motivating me to get moving 🏃‍♀️",
+        "likes": [6],
+        "createdAt": "2024-01-11T07:30:00Z"
+      }
+    ],
+    "tags": ["fitness", "running", "motivation"],
+    "createdAt": "2024-01-11T07:00:00Z"
+  },
+  {
+    "Id": 6,
+    "userId": 7,
+    "user": {
+      "Id": 7,
+      "username": "lisa_foodie",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=lisa"
+    },
+    "images": ["https://picsum.photos/600/600?random=6"],
+    "caption": "Sunday brunch perfection! 🥞 Homemade pancakes with fresh berries and maple syrup. There's something magical about slow Sunday mornings and comfort food that feeds the soul.",
+    "location": "Home Kitchen",
+    "likes": [1, 3, 4, 5, 8],
+    "comments": [
+      {
+        "Id": 6,
+        "userId": 4,
+        "user": { "Id": 4, "username": "mike_adventures", "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=mike" },
+        "text": "This looks absolutely delicious! Recipe please? 🤤",
+        "likes": [7],
+        "createdAt": "2024-01-10T11:45:00Z"
+      }
+    ],
+    "tags": ["food", "brunch", "homemade"],
+    "createdAt": "2024-01-10T11:00:00Z"
+  }
+]
