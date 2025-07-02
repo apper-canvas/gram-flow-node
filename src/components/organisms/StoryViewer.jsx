@@ -1,11 +1,10 @@
-import { useState, useEffect, useCallback } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { useSpring, animated } from '@react-spring/web'
-import { useDrag } from '@react-spring/web'
-import ApperIcon from '@/components/ApperIcon'
-import { toast } from 'react-toastify'
+import React, { useCallback, useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { animated, useSpring, useDrag } from "@react-spring/web";
+import { toast } from "react-toastify";
+import ApperIcon from "@/components/ApperIcon";
 const StoryViewer = ({ 
-  stories, 
+  stories,
   currentIndex, 
   onClose, 
   onStoryComplete, 
