@@ -4,7 +4,6 @@ import { useSpring, animated } from '@react-spring/web'
 import { useDrag } from '@react-spring/web'
 import ApperIcon from '@/components/ApperIcon'
 import { toast } from 'react-toastify'
-
 const StoryViewer = ({ 
   stories, 
   currentIndex, 
