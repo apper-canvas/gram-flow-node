@@ -12,6 +12,7 @@ import storiesService from "@/services/api/storiesService";
 
 const StoriesBar = () => {
   const [stories, setStories] = useState([])
+  const [currentUserStory, setCurrentUserStory] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [viewerOpen, setViewerOpen] = useState(false)
@@ -32,10 +33,20 @@ const StoriesBar = () => {
     } finally {
       setLoading(false)
     }
+}
+
+  const loadCurrentUserStory = async () => {
+    try {
+      const userStory = await storiesService.getCurrentUserStory()
+      setCurrentUserStory(userStory)
+    } catch (err) {
+      console.error('Failed to load current user story:', err)
+    }
   }
 
   useEffect(() => {
     loadStories()
+    loadCurrentUserStory()
   }, [])
 
 const handleStoryClick = (story) => {
@@ -105,9 +116,9 @@ const handleViewerClose = () => {
           avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=current"
         }
       }
-
-      const newStory = await storiesService.uploadStory(storyData)
+const newStory = await storiesService.uploadStory(storyData)
       setStories(prev => [newStory, ...prev])
+      setCurrentUserStory(newStory)
       
       toast.success('Story uploaded successfully!')
       setUploadModalOpen(false)
@@ -139,22 +150,51 @@ const handleViewerClose = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
 >
-      <div className="flex space-x-4 overflow-x-auto scrollbar-hide">
-        {/* Add Story Button */}
+<div className="flex space-x-4 overflow-x-auto scrollbar-hide">
+        {/* Add Story Button or Current User Story */}
         <motion.div
           className="flex-shrink-0"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
         >
-          <div
-            className="flex flex-col items-center space-y-2 cursor-pointer"
-            onClick={() => setUploadModalOpen(true)}
-          >
-<div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center border-2 border-white shadow-lg">
-              <ApperIcon name="Plus" className="w-8 h-8 text-white" />
+          {currentUserStory ? (
+            <div
+              className="flex flex-col items-center space-y-2 cursor-pointer"
+              onClick={() => handleStoryClick(currentUserStory)}
+            >
+              <div className="relative">
+                <div className="w-16 h-16 rounded-full overflow-hidden border-3 border-gradient-to-br from-primary to-secondary p-0.5">
+                  <div className="w-full h-full rounded-full overflow-hidden">
+                    <img
+                      src={currentUserStory.image}
+                      alt="Your story"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    setUploadModalOpen(true)
+                  }}
+                  className="absolute -bottom-1 -right-1 w-6 h-6 bg-primary rounded-full flex items-center justify-center border-2 border-white shadow-lg hover:bg-primary/90 transition-colors"
+                >
+                  <ApperIcon name="Plus" className="w-3 h-3 text-white" />
+                </button>
+              </div>
+              <span className="text-xs text-gray-600 font-medium">Your Story</span>
             </div>
-            <span className="text-xs text-gray-600 font-medium">Add Story</span>
-          </div>
+          ) : (
+            <div
+              className="flex flex-col items-center space-y-2 cursor-pointer"
+              onClick={() => setUploadModalOpen(true)}
+            >
+              <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center border-2 border-white shadow-lg">
+                <ApperIcon name="Plus" className="w-8 h-8 text-white" />
+              </div>
+              <span className="text-xs text-gray-600 font-medium">Add Story</span>
+            </div>
+          )}
         </motion.div>
 
         {/* Loading State */}

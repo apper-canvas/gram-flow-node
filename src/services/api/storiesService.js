@@ -73,8 +73,17 @@ mockStories[index] = { ...mockStories[index], viewed: true }
       viewed: false,
       createdAt: new Date().toISOString()
     }
-    mockStories.unshift(newStory)
+mockStories.unshift(newStory)
     return { ...newStory }
+  },
+
+  async getCurrentUserStory() {
+    await delay(200)
+    const currentUserId = 1
+    const userStories = mockStories
+      .filter(s => s.userId === currentUserId)
+      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    return userStories.length > 0 ? { ...userStories[0] } : null
   }
 }
 
