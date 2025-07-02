@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { toast } from 'react-toastify'
-import StoryItem from '@/components/molecules/StoryItem'
-import StoryViewer from '@/components/organisms/StoryViewer'
-import storiesService from '@/services/api/storiesService'
-import Loading from '@/components/ui/Loading'
-import Error from '@/components/ui/Error'
-import ApperIcon from '@/components/ApperIcon'
-import Button from '@/components/atoms/Button'
-import Input from '@/components/atoms/Input'
+import React, { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { toast } from "react-toastify";
+import ApperIcon from "@/components/ApperIcon";
+import StoryViewer from "@/components/organisms/StoryViewer";
+import Input from "@/components/atoms/Input";
+import Button from "@/components/atoms/Button";
+import StoryItem from "@/components/molecules/StoryItem";
+import Error from "@/components/ui/Error";
+import Loading from "@/components/ui/Loading";
+import storiesService from "@/services/api/storiesService";
 
 const StoriesBar = () => {
   const [stories, setStories] = useState([])
@@ -55,29 +55,82 @@ const handleStoryClick = (story) => {
     }
   }
 
-  const handleViewerClose = () => {
+const handleViewerClose = () => {
     setViewerOpen(false)
     setCurrentStoryIndex(0)
   }
 
-  if (loading) {
-    return (
-      <div className="p-4 bg-surface">
-        <div className="flex space-x-4 overflow-x-auto">
-          {[...Array(6)].map((_, index) => (
-            <div key={index} className="flex flex-col items-center space-y-2 flex-shrink-0">
-              <div className="w-16 h-16 bg-gradient-to-br from-gray-200 to-gray-300 rounded-full animate-pulse" />
-              <div className="w-12 h-3 bg-gradient-to-r from-gray-200 to-gray-300 rounded animate-pulse" />
-            </div>
-          ))}
-        </div>
-      </div>
-    )
+  function handleImageSelect(file) {
+    if (file) {
+      setSelectedImage(file)
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        setImagePreview(e.target.result)
+      }
+      reader.readAsDataURL(file)
+      setError('')
+    }
   }
 
-  if (error) {
-    return <Error message={error} onRetry={loadStories} />
+  function getFilterStyle(filterName) {
+    const filterStyles = {
+      none: '',
+      grayscale: 'filter grayscale',
+      sepia: 'filter sepia',
+      blur: 'filter blur-sm',
+      brightness: 'filter brightness-125',
+      contrast: 'filter contrast-125',
+      saturate: 'filter saturate-150'
+    }
+    return filterStyles[filterName] || ''
   }
+
+  async function handleStoryUpload() {
+    if (!selectedImage || !imagePreview) {
+      toast.error('Please select an image')
+      return
+    }
+
+    try {
+      setUploading(true)
+      setError('')
+
+      const storyData = {
+        image: imagePreview,
+        filter: selectedFilter,
+        userId: 1,
+        user: {
+          Id: 1,
+          username: "current_user",
+          avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=current"
+        }
+      }
+
+      const newStory = await storiesService.uploadStory(storyData)
+      setStories(prev => [newStory, ...prev])
+      
+      toast.success('Story uploaded successfully!')
+      setUploadModalOpen(false)
+      setSelectedImage(null)
+      setImagePreview('')
+      setSelectedFilter('none')
+    } catch (err) {
+      setError('Failed to upload story. Please try again.')
+      toast.error('Failed to upload story')
+    } finally {
+      setUploading(false)
+    }
+  }
+
+  const filters = [
+    { name: 'none', label: 'Original' },
+    { name: 'grayscale', label: 'B&W' },
+    { name: 'sepia', label: 'Sepia' },
+    { name: 'blur', label: 'Blur' },
+    { name: 'brightness', label: 'Bright' },
+    { name: 'contrast', label: 'Sharp' },
+    { name: 'saturate', label: 'Vivid' }
+  ]
 
   return (
     <motion.div
@@ -97,14 +150,29 @@ const handleStoryClick = (story) => {
             className="flex flex-col items-center space-y-2 cursor-pointer"
             onClick={() => setUploadModalOpen(true)}
           >
-            <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center border-2 border-white shadow-lg">
+<div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center border-2 border-white shadow-lg">
               <ApperIcon name="Plus" className="w-8 h-8 text-white" />
             </div>
             <span className="text-xs text-gray-600 font-medium">Add Story</span>
           </div>
         </motion.div>
 
-        {stories.map((story, index) => (
+        {/* Loading State */}
+        {loading && (
+          <div className="flex-shrink-0 flex items-center justify-center">
+            <Loading className="w-8 h-8" />
+          </div>
+        )}
+
+        {/* Error State */}
+        {error && !loading && (
+          <div className="flex-shrink-0 flex items-center justify-center">
+            <Error message={error} onRetry={loadStories} />
+          </div>
+        )}
+
+        {/* Stories */}
+        {!loading && !error && stories.map((story, index) => (
           <motion.div
             key={story.Id}
             initial={{ opacity: 0, x: -20 }}
@@ -125,7 +193,7 @@ const handleStoryClick = (story) => {
           onStoryComplete={handleStoryComplete}
           onIndexChange={setCurrentStoryIndex}
         />
-)}
+      )}
 
       {/* Story Upload Modal */}
       <AnimatePresence>
@@ -247,81 +315,9 @@ const handleStoryClick = (story) => {
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence>
+</AnimatePresence>
     </motion.div>
-  )
+  );
+};
 
-  function handleImageSelect(file) {
-    if (file) {
-      setSelectedImage(file)
-      const reader = new FileReader()
-      reader.onload = (e) => {
-        setImagePreview(e.target.result)
-      }
-      reader.readAsDataURL(file)
-      setError('')
-    }
-  }
-
-  function getFilterStyle(filterName) {
-    const filterStyles = {
-      none: '',
-      grayscale: 'filter grayscale',
-      sepia: 'filter sepia',
-      blur: 'filter blur-sm',
-      brightness: 'filter brightness-125',
-      contrast: 'filter contrast-125',
-      saturate: 'filter saturate-150'
-    }
-    return filterStyles[filterName] || ''
-  }
-
-  async function handleStoryUpload() {
-    if (!selectedImage || !imagePreview) {
-      toast.error('Please select an image')
-      return
-    }
-
-    try {
-      setUploading(true)
-      setError('')
-
-      const storyData = {
-        image: imagePreview,
-        filter: selectedFilter,
-        userId: 1,
-        user: {
-          Id: 1,
-          username: "current_user",
-          avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=current"
-        }
-      }
-
-      const newStory = await storiesService.uploadStory(storyData)
-      setStories(prev => [newStory, ...prev])
-      
-      toast.success('Story uploaded successfully!')
-      setUploadModalOpen(false)
-      setSelectedImage(null)
-      setImagePreview('')
-      setSelectedFilter('none')
-    } catch (err) {
-      setError('Failed to upload story. Please try again.')
-      toast.error('Failed to upload story')
-    } finally {
-      setUploading(false)
-    }
-  }
-
-  const filters = [
-    { name: 'none', label: 'Original' },
-    { name: 'grayscale', label: 'B&W' },
-    { name: 'sepia', label: 'Sepia' },
-    { name: 'blur', label: 'Blur' },
-    { name: 'brightness', label: 'Bright' },
-    { name: 'contrast', label: 'Sharp' },
-    { name: 'saturate', label: 'Vivid' }
-  ]
-}
-
-export default StoriesBar
+export default StoriesBar;
