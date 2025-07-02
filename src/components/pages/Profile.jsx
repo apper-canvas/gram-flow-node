@@ -54,8 +54,8 @@ const Profile = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
       >
-<div className="flex items-start justify-between mb-6">
-          <div className="flex items-center space-x-4">
+<div className="mb-6">
+          <div className="flex items-center space-x-4 mb-4">
             <Avatar
               src={user?.avatar}
               alt={user?.username}
@@ -70,7 +70,7 @@ const Profile = () => {
             </div>
           </div>
           
-          <div className="flex items-center space-x-6 text-sm">
+          <div className="flex items-center justify-center space-x-8 text-sm">
             <div className="text-center">
               <div className="font-bold text-lg">{posts.length}</div>
               <div className="text-gray-500">posts</div>
