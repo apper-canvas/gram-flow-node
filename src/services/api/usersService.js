@@ -31,13 +31,40 @@ const usersService = {
     return { ...newUser }
   },
 
-  async update(id, data) {
+async update(id, data) {
     await delay(300)
+    
+    // Validate required fields
+    if (data.username && data.username.trim().length < 3) {
+      throw new Error('Username must be at least 3 characters long')
+    }
+    
+    if (data.displayName && data.displayName.trim().length < 1) {
+      throw new Error('Display name is required')
+    }
+    
+    // Check for duplicate username if changing
+    if (data.username) {
+      const existingUser = mockUsers.find(u => u.Id !== id && u.username === data.username.trim())
+      if (existingUser) {
+        throw new Error('Username already taken')
+      }
+    }
+    
     const index = mockUsers.findIndex(u => u.Id === id)
     if (index === -1) {
       throw new Error('User not found')
     }
-    mockUsers[index] = { ...mockUsers[index], ...data }
+    
+    // Clean and update data
+    const cleanData = {
+      ...data,
+      username: data.username?.trim(),
+      displayName: data.displayName?.trim(),
+      bio: data.bio?.trim()
+    }
+    
+    mockUsers[index] = { ...mockUsers[index], ...cleanData }
     return { ...mockUsers[index] }
   },
 

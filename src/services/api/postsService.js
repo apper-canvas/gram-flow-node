@@ -53,8 +53,58 @@ const postsService = {
     if (index === -1) {
       throw new Error('Post not found')
     }
-    const deleted = mockPosts.splice(index, 1)[0]
+const deleted = mockPosts.splice(index, 1)[0]
     return { ...deleted }
+  },
+
+  async addComment(postId, commentData) {
+    await delay(250)
+    const index = mockPosts.findIndex(p => p.Id === postId)
+    if (index === -1) {
+      throw new Error('Post not found')
+    }
+
+    const newComment = {
+      Id: Date.now(), // Simple ID generation for comments
+      userId: 1, // Current user
+      username: 'you',
+      text: commentData.text,
+      createdAt: new Date().toISOString()
+    }
+
+    if (!mockPosts[index].comments) {
+      mockPosts[index].comments = []
+    }
+    
+    mockPosts[index].comments.push(newComment)
+    return { ...mockPosts[index] }
+  },
+
+  async toggleLike(postId, userId) {
+    await delay(200)
+    const index = mockPosts.findIndex(p => p.Id === postId)
+    if (index === -1) {
+      throw new Error('Post not found')
+    }
+
+    if (!mockPosts[index].likes) {
+      mockPosts[index].likes = []
+    }
+
+    const likeIndex = mockPosts[index].likes.findIndex(like => like.userId === userId)
+    
+    if (likeIndex > -1) {
+      // Remove like
+      mockPosts[index].likes.splice(likeIndex, 1)
+    } else {
+      // Add like
+      mockPosts[index].likes.push({
+        userId,
+        createdAt: new Date().toISOString()
+      })
+    }
+
+    return { ...mockPosts[index] }
   }
 }
 
