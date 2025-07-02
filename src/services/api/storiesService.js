@@ -55,8 +55,26 @@ const deleted = mockStories.splice(index, 1)[0]
     if (index === -1) {
       throw new Error('Story not found')
     }
-    mockStories[index] = { ...mockStories[index], viewed: true }
+mockStories[index] = { ...mockStories[index], viewed: true }
     return { ...mockStories[index] }
+  },
+
+  async uploadStory(storyData) {
+    await delay(500)
+    const newStory = {
+      Id: Math.max(...mockStories.map(s => s.Id), 0) + 1,
+      userId: storyData.userId || 1,
+      user: storyData.user || {
+        Id: 1,
+        username: "current_user",
+        avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=current"
+      },
+      image: storyData.image,
+      viewed: false,
+      createdAt: new Date().toISOString()
+    }
+    mockStories.unshift(newStory)
+    return { ...newStory }
   }
 }
 
